@@ -50,6 +50,7 @@ app.get("/video-url/:filename", async (req, res) => {
       Bucket: BUCKET_NAME,
       Key: filename,
       ResponseContentDisposition: "inline",
+      ResponseContentType: "video/mp4",
     });
 
     const signedUrl = await getSignedUrl(s3, command, { expiresIn: 60 * 60 * 2 });
