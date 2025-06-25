@@ -1,11 +1,8 @@
 const express = require("express");
 const { S3Client, HeadObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-const dotenv = require("dotenv");
 
-dotenv.config();
-
-const app = express();
+const app = express(); 
 const port = process.env.PORT || 3000;
 
 const s3 = new S3Client({
@@ -60,5 +57,5 @@ app.get("/video-url/:filename", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
+  console.log(`✅ Server running at port: ${port}`);
 });
