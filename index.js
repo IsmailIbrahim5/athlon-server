@@ -44,7 +44,7 @@ app.get("/video-url/:filename", async (req, res) => {
     await s3.send(new HeadObjectCommand({
       Bucket: BUCKET_NAME,
       Key: filename,
-    }));
+    })); 
 
     const command = new GetObjectCommand({ 
       Bucket: BUCKET_NAME,
@@ -53,7 +53,7 @@ app.get("/video-url/:filename", async (req, res) => {
       ResponseContentType: "video/mp4",
     });
 
-    const signedUrl = await getSignedUrl(s3, command, { expiresIn: 60 * 60 * 2 });
+    const signedUrl = await getSignedUrl(s3, command, { expiresIn: 60 * 60 * 3 });
 
     return res.json({ url: signedUrl });
 
